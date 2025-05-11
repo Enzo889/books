@@ -11,7 +11,7 @@ import Welcome from '../components/Welcome.astro';
 
 <Layout>
   <main>
-    <h1>Mis Listas de Libros</h1>
+    <h1 class="text-sky-300">Mis Listas de Libros</h1>
     {sampleLists.map(list => (
       <BookList list={list} />
     ))}
@@ -28,6 +28,5 @@ import Welcome from '../components/Welcome.astro';
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2.5em;
-    color: #333;
   }
 </style>
