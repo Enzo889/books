@@ -1,11 +1,33 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import BookList from '../components/BookList.astro';
+import { sampleLists } from '../data/books';
+import Welcome from '../components/Welcome.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
+
 <Layout>
-	<Welcome />
+  <main>
+    <h1>Mis Listas de Libros</h1>
+    {sampleLists.map(list => (
+      <BookList list={list} />
+    ))}
+  </main>
 </Layout>
+
+<style>
+  main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5em;
+    color: #333;
+  }
+</style>

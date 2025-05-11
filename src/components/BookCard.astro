@@ -1,0 +1,60 @@
+---
+import type { Book } from '../data/books';
+
+export interface Props {
+  book: Book;
+}
+
+const { book } = Astro.props;
+---
+
+<div class="book-card">
+  <img src={book.coverImage} alt={`Portada de ${book.title}`} class="book-cover" />
+  <div class="book-info">
+    <h3>{book.title}</h3>
+    <p class="author">Por: {book.author}</p>
+    <p class="year">Año: {book.year}</p>
+    <p class="description">{book.description}</p>
+  </div>
+</div>
+
+<style>
+  .book-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    display: flex;
+    max-width: 500px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  }
+  .book-cover {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 16px;
+    border-radius: 4px;
+  }
+  .book-info h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.5em;
+  }
+  .book-info p {
+    margin: 4px 0;
+    font-size: 0.9em;
+  }
+  .author {
+    font-style: italic;
+    color: #555;
+  }
+  .year {
+    color: #777;
+  }
+  .description {
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #333;
+    line-height: 1.4;
+  }
+</style>

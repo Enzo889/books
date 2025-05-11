@@ -1,0 +1,50 @@
+---
+import type { Book, BookList as BookListType } from '../data/books';
+import BookCard from './BookCard.astro';
+import { sampleBooks } from '../data/books'; // Import all books to filter from
+
+export interface Props {
+  list: BookListType;
+}
+
+const { list } = Astro.props;
+
+// Find the books that belong to this list
+const booksInList: Book[] = sampleBooks.filter(book => list.bookIds.includes(book.id));
+---
+
+<div class="book-list-container">
+  <h2>{list.name}</h2>
+  <div class="books-grid">
+    {booksInList.map((book) => (
+      <BookCard book={book} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .book-list-container {
+    margin-bottom: 32px;
+    padding: 16px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+
+  .book-list-container h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 2em;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 16px;
+  }
+
+  /* Adjust BookCard styles if needed when inside a list, or ensure BookCard is self-contained */
+</style>
