@@ -2,31 +2,26 @@
 import Layout from '../layouts/Layout.astro';
 import BookList from '../components/BookList.astro';
 import { sampleLists } from '../data/books';
-import Welcome from '../components/Welcome.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Button } from '@/components/ui/button';
 ---
 
+<Layout >
+  <main class="container mx-auto py-8 px-4 text-foreground">
+    <h1 class="text-4xl font-bold text-center mb-12 text-foreground">Mis Listas de Libros</h1>
+    
+    <div class="space-y-12">
+      {sampleLists.map(list => (
+        <BookList list={list} />
+      ))}
+    </div>
 
-<Layout>
-  <main>
-    <h1 class="text-sky-300">Mis Listas de Libros</h1>
-    {sampleLists.map(list => (
-      <BookList list={list} />
-    ))}
+    <div class="mt-12 flex justify-center">
+      <Button variant="outline">Ver más (Ejemplo)</Button> 
+    </div>
   </main>
 </Layout>
 
-<style>
-  main {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5em;
-  }
+<style is:global>
+  /* Asegurarnos que el body y html ocupen toda la altura si es necesario para algunos layouts de shadcn */
+ 
 </style>
