@@ -4,6 +4,7 @@ import BookList from '../components/BookList.astro';
 import { sampleLists } from '../data/books';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from '@/components/ModeToggle';
+import { DialogButton } from '@/components/ShareButtton';
 ---
 
 <script is:inline>
@@ -27,6 +28,11 @@ import { ModeToggle } from '@/components/ModeToggle';
 <Layout >
   <main class="container mx-auto py-8 px-4 text-foreground">
     <h1 class="text-4xl font-bold text-center mb-12 text-foreground">Mis Listas de Libros</h1>
+    <div class="my-12 flex justify-center">
+      <ModeToggle client:load />
+      <Button variant="outline" className='cursor-pointer'>Ver más (Ejemplo)</Button> 
+      <DialogButton client:load />
+    </div>
     
     <div class="space-y-12">
       {sampleLists.map(list => (
@@ -34,10 +40,7 @@ import { ModeToggle } from '@/components/ModeToggle';
       ))}
     </div>
     
-    <div class="mt-12 flex justify-center">
-      <ModeToggle client:load />
-      <Button variant="outline">Ver más (Ejemplo)</Button> 
-    </div>
+    
   </main>
 </Layout>
 

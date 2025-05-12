@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { BookContextMenu } from './BookContextMenu.tsx';
 
 export interface Props {
   book: Book;
@@ -16,20 +17,22 @@ export interface Props {
 const { book } = Astro.props;
 ---
 
-<Card className="w-full max-w-sm flex flex-col h-full">
+<BookContextMenu book={book} client:load>
+<Card className="w-full max-w-sm flex flex-col h-full cursor-default">
   <CardHeader className="p-0 relative aspect-[2/3]">
-    <img src={book.coverImage} alt={`Portada de ${book.title}`} class="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
-  </CardHeader>
-  <CardContent className="p-4 flex-grow flex flex-col">
-    <CardTitle className="text-lg font-semibold mb-1">{book.title}</CardTitle>
-    <CardDescription className="text-sm text-muted-foreground mb-2">Por: {book.author} ({book.year})</CardDescription>
-    <p class="text-sm text-muted-foreground line-clamp-3 flex-grow">{book.description}</p>
-  </CardContent>
-  <CardFooter className="p-4 pt-2">
-    <!-- Aquí podrían ir botones de acción en el futuro -->
-    <!-- <Button variant="outline" size="sm">Leer más</Button> -->
-  </CardFooter>
-</Card>
+      <img src={book.coverImage} alt={`Portada de ${book.title}`} class="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+    </CardHeader>
+    <CardContent className="p-4 flex-grow flex flex-col">
+      <CardTitle className="text-lg font-semibold mb-1">{book.title}</CardTitle>
+      <CardDescription className="text-sm text-muted-foreground mb-2">Por: {book.author} ({book.year})</CardDescription>
+      <p class="text-sm text-muted-foreground line-clamp-3 flex-grow">{book.description}</p>
+    </CardContent>
+    <CardFooter className="p-4 pt-2">
+      <!-- Aquí podrían ir botones de acción en el futuro -->
+      <!-- <Button variant="outline" size="sm">Leer más</Button> -->
+    </CardFooter>
+  </Card>
+</BookContextMenu>
 
 <style>
   /* Estilos adicionales si Tailwind no es suficiente o para overrides específicos */
